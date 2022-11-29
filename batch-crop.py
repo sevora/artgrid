@@ -59,6 +59,7 @@ def batch_crop(source_folder, target_folder):
                 image = center_crop(image, cropped_image_width, cropped_image_height)
 
             image.save(save_path, 'JPEG')
+            image.close()
             print('Cropped %s' %path)
 
         except IOError:

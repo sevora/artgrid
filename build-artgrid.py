@@ -97,6 +97,7 @@ def build_artgrid(base_image_path, source_folder, save_path):
                cropped_image = Image.open(os.path.join(source_folder, nearest_image_name))
                cropped_image.thumbnail((cropped_image_width, cropped_image_height))
                result_image.paste(cropped_image, (x * cropped_image_width, y * cropped_image_height))
+               cropped_image.close()
                print('Pasting %s'% nearest_image_name)
 
        result_image.save(save_path)

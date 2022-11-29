@@ -25,6 +25,7 @@ def create_manifest(folder):
         temporary_image = Image.open( os.path.join(folder,filename) ) 
         image = Image.new('RGB', temporary_image.size)
         image.paste(temporary_image)
+        temporary_image.close()
         width, height = image.size
 
         red = 0
@@ -39,6 +40,7 @@ def create_manifest(folder):
                 red += r
                 green += g
                 blue += b
+        image.close()
 
         total = width * height
         red /= total
@@ -47,6 +49,7 @@ def create_manifest(folder):
 
         manifest[filename] = { 'r': round(red), 'g': round(green), 'b': round(blue) }
         print('Computed RGB for %s' % filename)
+
 
     with open(os.path.join(folder, 'manifest.json'), 'w') as result_file:
         json.dump(manifest, result_file)
